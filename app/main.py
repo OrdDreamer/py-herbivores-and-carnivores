@@ -17,7 +17,7 @@ class Animal:
 class Herbivore(Animal):
 
     def hide(self) -> None:
-        self.hidden = self.hidden is False
+        self.hidden = not self.hidden
 
 
 class Carnivore(Animal):
@@ -27,8 +27,4 @@ class Carnivore(Animal):
         if isinstance(animal, Herbivore) and animal.hidden is False:
             animal.health -= 50
             if animal.health <= 0:
-                Animal.alive = [
-                    animal
-                    for animal in Animal.alive
-                    if animal.health > 0
-                ]
+                Animal.alive.remove(animal)
